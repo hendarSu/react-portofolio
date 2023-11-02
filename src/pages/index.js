@@ -1,9 +1,10 @@
 import Head from 'next/head'
 import { Inter } from 'next/font/google'
 
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
+import Feature from '@/components/Feature'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,10 +20,13 @@ export default function Home() {
       <main>
         {/* Section Navbar */}
         <Navbar></Navbar>
-        
+
         <Container >
           {/* Section Hero */}
           <Hero></Hero>
+          
+          {/* Section Feature */}
+          <Feature></Feature>
         </Container>
       </main>
     </>
