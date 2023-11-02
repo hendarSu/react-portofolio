@@ -14,7 +14,7 @@ const Hero = () => {
                     </p>
                 </Col>
                 <Col md={6}>
-                    <Image src="https://img.freepik.com/free-photo/close-up-hand-holding-basket-ball_23-2149160526.jpg?w=2000&t=st=1698930367~exp=1698930967~hmac=b160d34c6f416791e32088a9b3fae5f97303331abf0b996fe7ebd514ffe9ce50" rounded width={300} />
+                    <Image src="https://img.freepik.com/free-photo/close-up-hand-holding-basket-ball_23-2149160526.jpg?w=2000&t=st=1698930367~exp=1698930967~hmac=b160d34c6f416791e32088a9b3fae5f97303331abf0b996fe7ebd514ffe9ce50" rounded width={"100%"} />
                 </Col>
             </Row>
         </section>
