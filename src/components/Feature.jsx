@@ -16,7 +16,12 @@ const Feature = () => {
         {features.map((data, index) => {
           return (
             <div className="col-md-3" key={index}>
-              <FeatureItem></FeatureItem>
+              <FeatureItem
+                name={data.name}
+                cover={data.cover}
+                summary={data.summary}
+                link={data.link}
+              />
             </div>
           );
         })}
