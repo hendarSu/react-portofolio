@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import CardItem from "./CardItem";
-import featuresData from "@/utils/data/features.json";
+import featuresData from "@/utils/data/projects.json";
 
-const Feature = () => {
+const ProjectList = () => {
   const [features, setFeatures] = useState([]);
 
   useEffect(() => {
@@ -30,4 +30,4 @@ const Feature = () => {
   );
 };
 
-export default Feature;
+export default ProjectList;

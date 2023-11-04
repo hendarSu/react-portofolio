@@ -1,6 +1,6 @@
 import { Image } from "react-bootstrap";
 
-const FeatureItem = ({ name, cover, summary, link }) => {
+const CardItem = ({ name, cover, summary, link }) => {
   return (
     <div className="card mb-2">
       <Image src={cover} className="card-img-top" />
@@ -15,4 +15,4 @@ const FeatureItem = ({ name, cover, summary, link }) => {
   );
 };
 
-export default FeatureItem;
+export default CardItem;
