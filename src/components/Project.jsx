@@ -1,12 +1,32 @@
 import { useEffect, useState } from "react";
 import CardItem from "./CardItem";
-import featuresData from "@/utils/data/projects.json";
+import { getProjects } from "@/rest/api";
+import ToastNotifiaction from "./Toast";
+
 
 const ProjectList = () => {
   const [features, setFeatures] = useState([]);
 
   useEffect(() => {
-    setFeatures(featuresData);
+    const fetchData = async () => {
+      try {
+        const projectData = await getProjects();
+        setFeatures(projectData);
+      } catch (error) {
+        return (
+          <>
+            <ToastNotifiaction
+              show={true}
+              message={error.message}
+              onClose={100}
+              color={"bg-danger"}
+            />
+          </>
+        );
+      }
+    };
+
+    fetchData();
   }, []);
 
   return (

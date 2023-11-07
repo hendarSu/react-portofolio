@@ -13,7 +13,7 @@ export default function Home() {
         <Hero></Hero>
 
         {/* Section Feature */}
-        <Feature></Feature>
+        <Feature/>
       </Container>
     </Layout>
   )
