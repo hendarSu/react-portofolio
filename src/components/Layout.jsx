@@ -1,7 +1,21 @@
 import Head from "next/head";
-import Navbar from '@/components/Navbar'
+import Navbar from "@/components/Navbar";
+import LayoutContext from "@/context/LayoutContext";
+import { useEffect, useState } from "react";
+import { getCookie } from "@/utils/cookies";
 
 export default function Layout({ children }) {
+  const [userData, setUserData] = useState({});
+  const [isLogin, setIsLogin] = useState(false);
+
+  useEffect(() => {
+    const userDataCookie = getCookie("userData");
+    if (userDataCookie) {
+      setUserData(JSON.parse(userDataCookie));
+      setIsLogin(true);
+    }
+  }, []);
+
   return (
     <>
       <Head>
@@ -11,9 +25,13 @@ export default function Layout({ children }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        {/* Section Navbar */}
-        <Navbar></Navbar>
-        {children}
+        <LayoutContext.Provider
+          value={{ userData, setUserData, isLogin, setIsLogin }}
+        >
+          {/* Section Navbar */}
+          <Navbar></Navbar>
+          {children}
+        </LayoutContext.Provider>
       </main>
     </>
   );

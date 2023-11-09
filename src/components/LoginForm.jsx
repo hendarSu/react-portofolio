@@ -1,8 +1,9 @@
+import LayoutContext from "@/context/LayoutContext";
 import { postLogin } from "@/rest/api";
-import { getCookie, setCookie } from "@/utils/cookies";
+import { setCookie } from "@/utils/cookies";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { Form, Button } from "react-bootstrap";
 
@@ -10,28 +11,30 @@ const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const { isLogin, userData } = useContext(LayoutContext);
+
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const isLogin = await postLogin({
-      email, password
-    })
+    const isLoginSuccess = await postLogin({
+      email,
+      password,
+    });
 
-    if (isLogin && isLogin.status === "success") {
-      setCookie("userData", JSON.stringify(isLogin.data), {
-        expires: 1
-      })
-      router.push("/");
+    if (isLoginSuccess && isLoginSuccess.status === "success") {
+      setCookie("userData", JSON.stringify(isLoginSuccess.data), {
+        expires: 1,
+      });
+      router.reload("/");
     }
-  }
+  };
 
   useEffect(() => {
-    const token = getCookie('userData');
-    if (token) {
-        router.push("/")
+    if (isLogin) {
+      router.push("/");
     }
-  }, [])
+  }, [isLogin, userData]);
 
   return (
     <section>
