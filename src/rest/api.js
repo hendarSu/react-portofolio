@@ -29,13 +29,25 @@ export const postRegistration = async ({ name, email, password, confirmationPass
         try {
             const response = await api.post('/api/v1/registration', {
                 name,
-                email, 
-                password, 
+                email,
+                password,
                 confirmationPassword
             });
             return response.data;
         } catch (error) {
             alert(error.message)
         }
+    }
+}
+
+export const postLogin = async ({ email, password }) => {
+    try {
+        const response = await api.post('/api/v1/auth/login', {
+            email,
+            password
+        });
+        return response.data;
+    } catch (error) {
+        alert(error.response.data.message)
     }
 }
