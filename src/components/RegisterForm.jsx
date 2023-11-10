@@ -1,4 +1,6 @@
+import { postRegistrtion } from "@/rest/api";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { Col, Form, Row, Button } from "react-bootstrap";
 
@@ -8,6 +10,28 @@ export default function RegisterForm() {
   const [password, setPassword] = useState("");
   const [confirmationPassword, setConfirmationPassword] = useState("");
 
+  const router = useRouter();
+
+  const serviceRegistrtion = async (e) => {
+    e.preventDefault();
+    const isSuccess = await postRegistrtion(
+        {
+            name : fullname,
+            email,
+            password,
+            confirmationPassword
+        }
+    )
+
+    if (isSuccess && isSuccess.status === 'success') {
+        alert(isSuccess.message);
+
+        setTimeout(() => {
+            router.push("/");
+        }, 1000)
+    }
+
+  }
   return (
     <Row>
       <Col md={6}>
@@ -19,7 +43,7 @@ export default function RegisterForm() {
       </Col>
       <Col md={6}>
         {/* fullname, email, password, confirmpassword */}
-        <Form className="mt-2">
+        <Form onSubmit={serviceRegistrtion} className="mt-2">
           <Form.Group className="mb-2">
             <Form.Control
               required

@@ -21,3 +21,21 @@ export const getProjects = async () => {
         throw error;
     }
 }
+
+export const postRegistrtion = async ({
+    name, email, password, confirmationPassword
+}) => {
+    try {
+        const response = await api.post('/api/v1/registration', {
+            name,
+            email,
+            password,
+            confirmationPassword
+        });
+        return response.data;
+    } catch (error) {
+        if (error) {
+            alert(error.response.data.message);            
+        }
+    }
+}
