@@ -26,7 +26,7 @@ export default function LoginFrom() {
             expires: 1
         })
         
-        router.push("/");
+        router.reload("/");
     }
 
   }
