@@ -39,3 +39,19 @@ export const postRegistrtion = async ({
         }
     }
 }
+
+export const postLogin = async ({
+     email, password
+}) => {
+    try {
+        const response = await api.post('/api/v1/auth/login', {
+            email,
+            password,
+        });
+        return response.data;
+    } catch (error) {
+        if (error) {
+            alert(error.response.data.message);            
+        }
+    }
+}

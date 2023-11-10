@@ -1,7 +1,22 @@
 import Head from "next/head";
-import Navbar from '@/components/Navbar'
+import Navbar from "@/components/Navbar";
+import GlobalContext from "@/contexts/GlobalContext";
+import { useEffect, useState } from "react";
+import { getCookie } from "@/utils/cookies";
 
 export default function Layout({ children }) {
+
+  const [isLogin, setIsLogin] = useState(false);
+  const [userData, setUserData] = useState({});
+
+  useEffect(() => {
+    const userDataCookie = getCookie("userData");
+    if (userDataCookie) {
+      setUserData(userDataCookie);
+      setIsLogin(true);
+    }
+  }, []);
+
   return (
     <>
       <Head>
@@ -11,9 +26,11 @@ export default function Layout({ children }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        {/* Section Navbar */}
-        <Navbar></Navbar>
-        {children}
+        <GlobalContext.Provider value={{isLogin, setIsLogin, userData, setUserData}} >
+          {/* Section Navbar */}
+          <Navbar></Navbar>
+          {children}
+        </GlobalContext.Provider>
       </main>
     </>
   );
