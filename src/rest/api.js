@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: process.env.API_BASE_URL
+    baseURL: process.env.NEXT_PUBLIC_API_BASE_URL
 })
 
 export const getFeatures = async () => {
@@ -19,5 +19,39 @@ export const getProjects = async () => {
         return response.data.data;
     } catch (error) {
         throw error;
+    }
+}
+
+export const postRegistrtion = async ({
+    name, email, password, confirmationPassword
+}) => {
+    try {
+        const response = await api.post('/api/v1/registration', {
+            name,
+            email,
+            password,
+            confirmationPassword
+        });
+        return response.data;
+    } catch (error) {
+        if (error) {
+            alert(error.response.data.message);            
+        }
+    }
+}
+
+export const postLogin = async ({
+     email, password
+}) => {
+    try {
+        const response = await api.post('/api/v1/auth/login', {
+            email,
+            password,
+        });
+        return response.data;
+    } catch (error) {
+        if (error) {
+            alert(error.response.data.message);            
+        }
     }
 }
