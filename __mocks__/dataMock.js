@@ -3,6 +3,9 @@ module.exports = {
         home : {
             heading : "Ini Content Hero",
             description : "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem dolores voluptate sint reiciendis at. Ea autem iure eum fugiat debitis esse, consequuntur in facilis provident fuga neque iusto magni quasi."
+        },
+        project: {
+            heading: "Our Projects"
         }
     },
     userData : {

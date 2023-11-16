@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react'
 import { dataFeature, page } from '../../__mocks__/dataMock'
 import CardItem from '@/components/CardItem'
 
-describe('Home', () => {
+describe('Page Home', () => {
     it('renders a heading', () => {
         render(<Home />)
 
