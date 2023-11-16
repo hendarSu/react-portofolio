@@ -14,7 +14,7 @@ const ToastNotifiaction = ({ show, message, onClose, color }) => {
       }}
     >
       <Toast.Header closeButton={false}>
-        <strong className="mr-auto ">Error</strong>
+        <strong className="mr-auto ">Notification</strong>
       </Toast.Header>
       <Toast.Body>{message}</Toast.Body>
     </Toast>
