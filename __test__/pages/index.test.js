@@ -14,7 +14,10 @@ describe('Page Home', () => {
         const desc = screen.getByText(page.home.description);
 
         expect(heading).toBeInTheDocument()
+        expect(heading.textContent).toBe(page.home.heading);
+
         expect(desc).toBeInTheDocument()
+        expect(desc.textContent).toBe(page.home.description)
     })
 
     it("renders a component Feature", () => {
