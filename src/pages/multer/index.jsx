@@ -18,7 +18,7 @@ export default function UploaderMulter() {
             let response = JSON.parse(xhr.response);
             console.log("Ini Response:");
             console.log(response);
-            setUrlImage(response.data.dir)
+            setUrlImage(response.data)
         }
     }
 
@@ -32,12 +32,11 @@ export default function UploaderMulter() {
          <Dropzone
             getUploadParams={getUploadParams}
             onChangeStatus={handleChangeStatus}
-            onSubmit={handleSubmit}
             styles={{ dropzone: { minHeight: 200, maxHeight: 250 } }}
             accept='image/*'
         />
 
-        <p>Ini URL Image : {urlImage}</p>
+        <h1 className='text-center mt-2'>Ini URL Image : {urlImage}</h1>
        </>
     )
 }
