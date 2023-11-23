@@ -23,14 +23,15 @@ export const getProjects = async () => {
 }
 
 export const postRegistrtion = async ({
-    name, email, password, confirmationPassword
+    name, email, password, confirmationPassword, imageProfile
 }) => {
     try {
         const response = await api.post('/api/v1/registration', {
             name,
             email,
             password,
-            confirmationPassword
+            confirmationPassword,
+            imageProfile
         });
         return response.data;
     } catch (error) {

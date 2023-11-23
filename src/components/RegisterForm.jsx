@@ -3,35 +3,52 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { Col, Form, Row, Button } from "react-bootstrap";
+import "react-dropzone-uploader/dist/styles.css";
+
+import Dropzone from "react-dropzone-uploader";
 
 export default function RegisterForm() {
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmationPassword, setConfirmationPassword] = useState("");
+  const [imageProfile, setImageProfile] = useState("");
 
   const router = useRouter();
 
   const serviceRegistrtion = async (e) => {
     e.preventDefault();
-    const isSuccess = await postRegistrtion(
-        {
-            name : fullname,
-            email,
-            password,
-            confirmationPassword
-        }
-    )
+    const isSuccess = await postRegistrtion({
+      name: fullname,
+      email,
+      password,
+      confirmationPassword,
+      imageProfile,
+    });
 
-    if (isSuccess && isSuccess.status === 'success') {
-        alert(isSuccess.message);
+    if (isSuccess && isSuccess.status === "success") {
+      alert(isSuccess.message);
 
-        setTimeout(() => {
-            router.push("/");
-        }, 1000)
+      setTimeout(() => {
+        router.push("/");
+      }, 1000);
     }
+  };
 
-  }
+  const getUploadParams = () => {
+    return { url: process.env.NEXT_PUBLIC_API_UPLOADER_MULTER };
+  };
+
+  const handleChangeStatus = ({ meta, xhr }, status) => {
+    console.log(status, meta);
+
+    if (status === "done") {
+      let response = JSON.parse(xhr.response);
+      console.log("Ini Response:");
+      setImageProfile(response.data.dir);
+    }
+  };
+
   return (
     <Row>
       <Col md={6}>
@@ -44,6 +61,13 @@ export default function RegisterForm() {
       <Col md={6}>
         {/* fullname, email, password, confirmpassword */}
         <Form onSubmit={serviceRegistrtion} className="mt-2">
+          <Dropzone
+            getUploadParams={getUploadParams}
+            onChangeStatus={handleChangeStatus}
+            styles={{ dropzone: { minHeight: 200, maxHeight: 250 } }}
+            accept="image/*"
+            classNames={"mb-2"}
+          />
           <Form.Group className="mb-2">
             <Form.Control
               required
