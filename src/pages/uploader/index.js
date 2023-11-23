@@ -4,7 +4,7 @@ import Dropzone from 'react-dropzone-uploader';
 
 export default function Uploader() {
     const getUploadParams = () => {
-        return { url: 'https://api.s.maripesan.com/v1/file-server/product/upload' }
+        return { url: process.env.NEXT_PUBLIC_API_UPLOADER }
     }
 
     const handleChangeStatus = ({ meta }, status) => {
