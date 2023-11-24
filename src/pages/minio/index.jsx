@@ -35,7 +35,12 @@ export default function UploaderMinio() {
             accept='image/*'
         />
 
-        <h1 className='text-center mt-2'>Ini URL Image : {urlImage}</h1>
+        <h1 className='text-center mt-2'>Ini URL Image </h1>
+        {urlImage && ( 
+            <div className='text-center'>
+                <img src={urlImage} className='img-fluid' />
+            </div>
+        )}
        </>
     )
 }

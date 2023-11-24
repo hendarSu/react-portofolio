@@ -45,7 +45,7 @@ export default function RegisterForm() {
     if (status === "done") {
       let response = JSON.parse(xhr.response);
       console.log("Ini Response:");
-      setImageProfile(response.data.dir);
+      setImageProfile(response.data);
     }
   };
 
@@ -61,13 +61,14 @@ export default function RegisterForm() {
       <Col md={6}>
         {/* fullname, email, password, confirmpassword */}
         <Form onSubmit={serviceRegistrtion} className="mt-2">
-          <Dropzone
-            getUploadParams={getUploadParams}
-            onChangeStatus={handleChangeStatus}
-            styles={{ dropzone: { minHeight: 200, maxHeight: 250 } }}
-            accept="image/*"
-            classNames={"mb-2"}
-          />
+          <Form.Group className="mb-2">
+            <Dropzone
+              getUploadParams={getUploadParams}
+              onChangeStatus={handleChangeStatus}
+              styles={{ dropzone: { minHeight: 200, maxHeight: 250 } }}
+              accept="image/*"
+            />
+          </Form.Group>
           <Form.Group className="mb-2">
             <Form.Control
               required
