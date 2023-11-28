@@ -12,7 +12,7 @@ export default function LoginFrom() {
 
   const router = useRouter();
 
-  const serviceRegistrtion = async (e) => {
+  const serviceLogin = async (e) => {
     e.preventDefault();
     const isSuccess = await postLogin(
         {
@@ -49,7 +49,7 @@ export default function LoginFrom() {
       </Col>
       <Col md={6}>
         {/* fullname, email, password, confirmpassword */}
-        <Form onSubmit={serviceRegistrtion} className="mt-2">
+        <Form onSubmit={serviceLogin} className="mt-2">
           <Form.Group className="mb-2">
             <Form.Control
               required
